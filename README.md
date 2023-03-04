@@ -51,7 +51,7 @@ cd xxx/Non-uniform_quadtree_map_master
 source ./devel/setup.bash
 roslaunch ./launch/non-uniform_quadtree_map_with_dead-end_semantics.launch
 ```
-<div align=center><img src="./Demo/1.png" /></div>
+<div align=center><img src="./Demo/map_building_2.png" /></div>
 
 ## 3.2 接收地图话题运行规划程序
 **规划相关代码涉及到其他工作，暂时不发布细节**
