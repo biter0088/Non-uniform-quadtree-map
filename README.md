@@ -1,4 +1,25 @@
-我们的工作：**A Non-Uniform Quadtree Map Building Method Including Dead-End Semantics Extraction**，2023年2月已经被接收，还未出版
+<p align="center">
+  <h1 align="center"> A Non-Uniform Quadtree Map Building Method Including Dead-End Semantics Extraction </h1>
+  <p align="center">
+    <a <strong>Xiuzhong Hu</strong></a>
+    ·
+    <a <strong>Guangming Xiong</strong></a>
+    ·
+    <a <strong>Junyi Ma</strong></a>    
+    ·    
+    <a <strong>Gege Cui</strong></a>
+    ·
+    <a <strong>Quanfu Yu</strong></a>
+    ·
+    <a <strong>Shihao Li</strong></a>        
+    ·
+    <a <strong>Zijie Zhou</strong></a>           
+  </p>
+  <p align="center"><strong>Beijing Institute of Technology</strong></a>
+  </h3>
+  <div align="center"></div>
+</p>
+
 
 ## 0. Dependency & Install
 ### Dependency
