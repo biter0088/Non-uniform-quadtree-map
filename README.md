@@ -19,7 +19,7 @@
   </h3>
   <div align="center"></div>
 </p>
-
+我们的工作已经录用，还未出版
 
 ## 0. Dependency & Install
 ### Dependency
