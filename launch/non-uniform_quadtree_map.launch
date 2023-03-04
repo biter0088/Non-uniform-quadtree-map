@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="my_broadcaster" args="0 0 0 0 0 0 /map /camera_init 100" />
+
+    <!-- 1. 发布2D栅格地图 -->
+    <node pkg="map_server" name="map_server" type="map_server" args="$(find close_area_semantic_map)/map/map1.yaml"/>
+
+    <!-- 2. 从2D栅格地图中提取死角语义信息，在此基础上将栅格地图转换为2D死角语义地图 -->
+    <!-- <node pkg="close_area_semantic_map" type="corner_map2d_node" name="corner_map2d_node" output="screen"> -->
+        <!--  发布地图话题 -->
+        <!-- <remap from="/create_map" to="/create_map"/>       -->
+        <!--  接收地图话题 -->     
+        <!-- <remap from="/global_map" to="/map"/>      -->
+    <!-- </node> -->
+    
+    <!-- 3.将2D死角语义地图转换为具有死角语义的非均匀四叉树地图 -->
+    <!-- <node pkg="quadtreemap" type="quadtreemap_addmarker_hdmap" name="quadtreemap_addmarker_hdmap" output="screen" > -->
+        <!--  接收地图话题 -->
+        <!-- <remap from="/global_path/grid_map" to="/create_map" />    -->
+        <!-- <remap from="/global_path/grid_map" to="/map" />    -->
+        <!-- <param name="path" value="$(find quadtreemap)/test.dat" />                      -->
+        <!-- <param name="use_resolution_005" value="true" />     -->
+        <!-- <param name="use_resolution_01" value="false" />  -->
+        <!-- <param name="use_resolution_02" value="false" />  -->
+        <!-- <param name="use_resolution_05" value="false" />  -->
+    <!-- </node> -->
+    
+    <!-- 3.将2D栅格地图转换为不带有死角语义的非均匀四叉树地图 -->
+    <node pkg="quadtreemap" type="quadtreemap_addmarker_hdmap2" name="quadtreemap_addmarker_hdmap2" output="screen" >
+        <!--  接收地图话题 -->
+        <!-- <remap from="/global_path/grid_map" to="/create_map" />    -->
+        <remap from="/global_path/grid_map" to="/map" />   
+        <remap from="/quadtree_map" to="/quadtree_map2" />           
+        <param name="path" value="$(find quadtreemap)/test2.dat" />                     
+        <param name="use_resolution_005" value="true" />    <!--  地图分辨率 -->
+        <param name="use_resolution_01" value="false" /> 
+        <param name="use_resolution_02" value="false" /> 
+        <param name="use_resolution_05" value="false" /> 
+    </node>
+
+    <arg name="rviz" default="true" />
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz_quadtreemap" args="-d $(find quadtreemap)/rviz_cfg/rviz_0.rviz" />
+    </group>
+
+</launch>

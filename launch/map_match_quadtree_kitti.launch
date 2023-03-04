@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- map1 map15 map23 map33 map41  -->
+    <arg name="map_matching1" default="true" />
+    <arg name="map_matching2" default="true" />
+    <arg name="map_matching3" default="true" />
+    <arg name="map_matching4" default="true" />
+    <arg name="map_matching5" default="true" />
+    <arg name="rviz" default="true" />
+
+    <group if="$(arg map_matching1)">
+        <node pkg="map2d3d" type="map_match_quadtree_kitti" name="map_match_quadtree_kitti" output="screen">
+
+            <param name="globalmappath" value="$(find map2d3d)/map_for_map_matching/map0_data.dat" /> 
+            <param name="globalmap_header_path" value="$(find map2d3d)/map_for_map_matching/map0.dat" /> 
+            <param name="localmappath"                    value="$(find map2d3d)/map_for_map_matching/map1_data.dat" /> 
+            <param name="localmap_header_path" value="$(find map2d3d)/map_for_map_matching/map1.dat" /> 
+            <param name="resolution" value="0.1" /> 
+
+            <!-- //用于匹配地图的长度和宽度 -->
+            <!-- // 粗匹配和精匹配时点重合的距离阈值 -->
+            <param name="point_threshold_rough_x" value="0.5" /> 
+            <param name="point_threshold_rough_y" value="0.5" /> 
+            <!-- <param name="point_threshold_rough_x" value="1" />  -->
+            <!-- <param name="point_threshold_rough_y" value="1" />  -->
+            <param name="point_threshold_refine_x" value="0.05" /> 
+            <param name="point_threshold_refine_y" value="0.05" /> 
+            <!-- // 粗匹配迭代步长与精匹配迭代范围 -->
+            <param name="range_refine_x_min" value="-10" /> 
+            <param name="range_refine_y_min" value="-10" /> 
+            <param name="range_refine_x_max" value="10" /> 
+            <param name="range_refine_y_max" value="10" /> 
+
+            <param name="iteration_interval" value="5" /> 
+            <param name="range_rough_x_min" value="-50" /> 
+            <param name="range_rough_y_min" value="-50" /> 
+            <param name="range_rough_x_max" value="50" /> 
+            <param name="range_rough_y_max" value="50" /> 
+        </node>
+    </group>
+
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz_map_match_quadtree" args="-d $(find map2d3d)/rviz_cfg/map_match_quadtree_kitti.rviz" />
+    </group>
+
+    <!-- 是否需要再开启一个地图匹配节点 -->
+    <group if="$(arg map_matching2)">
+        <node pkg="map2d3d" type="map_match_quadtree_kitti2" name="map_match_quadtree_kitti2" output="screen">
+
+            <param name="globalmappath" value="$(find map2d3d)/map_for_map_matching/map0_data.dat" /> 
+            <param name="globalmap_header_path" value="$(find map2d3d)/map_for_map_matching/map0.dat" /> 
+            <param name="localmappath"                    value="$(find map2d3d)/map_for_map_matching/map15_data.dat" /> 
+            <param name="localmap_header_path" value="$(find map2d3d)/map_for_map_matching/map15.dat" />         
+            <param name="resolution" value="0.1" /> 
+
+            <!-- 修改话题名称 ，用于区分-->
+            <remap from="/for_icp_cloud" to="/for_icp_cloud2" />                           
+            <remap from="/after_icp_cloud" to="/after_icp_cloud2" />                  
+            <remap from="/source_all_cloud" to="/source_all_cloud2" />                           
+            <remap from="/source_cloud" to="/source_cloud2" />                 
+            <remap from="/target_cloud" to="/target_cloud2" />      
+            <remap from="/verify_cloud" to="/verify_cloud2" />                 
+            <remap from="/refine_verify_cloud" to="/refine_verify_cloud2" />      
+
+            <!-- //用于匹配地图的长度和宽度 -->
+            <!-- // 粗匹配和精匹配时点重合的距离阈值 -->
+            <param name="point_threshold_rough_x" value="0.5" /> 
+            <param name="point_threshold_rough_y" value="0.5" /> 
+            <param name="point_threshold_refine_x" value="0.05" /> 
+            <param name="point_threshold_refine_y" value="0.05" /> 
+            <!-- // 粗匹配迭代步长与精匹配迭代范围 -->
+            <param name="range_refine_x_min" value="-10" /> 
+            <param name="range_refine_y_min" value="-10" /> 
+            <param name="range_refine_x_max" value="10" /> 
+            <param name="range_refine_y_max" value="10" /> 
+
+            <param name="iteration_interval" value="5" /> 
+            <param name="range_rough_x_min" value="-50" /> 
+            <param name="range_rough_y_min" value="-50" /> 
+            <param name="range_rough_x_max" value="50" /> 
+            <param name="range_rough_y_max" value="50" /> 
+        </node>
+    </group>
+
+    <!-- 是否需要再开启一个地图匹配节点 -->
+    <group if="$(arg map_matching3)">
+        <node pkg="map2d3d" type="map_match_quadtree_kitti3" name="map_match_quadtree_kitti3" output="screen">
+
+            <param name="globalmappath" value="$(find map2d3d)/map_for_map_matching/map0_data.dat" /> 
+            <param name="globalmap_header_path" value="$(find map2d3d)/map_for_map_matching/map0.dat" /> 
+            <param name="localmappath"                    value="$(find map2d3d)/map_for_map_matching/map23_data.dat" /> 
+            <param name="localmap_header_path" value="$(find map2d3d)/map_for_map_matching/map23.dat" />         
+            <param name="resolution" value="0.1" /> 
+
+            <!-- 修改话题名称 ，用于区分-->
+            <remap from="/for_icp_cloud" to="/for_icp_cloud3" />                           
+            <remap from="/after_icp_cloud" to="/after_icp_cloud3" />                  
+            <remap from="/source_all_cloud" to="/source_all_cloud3" />                           
+            <remap from="/source_cloud" to="/source_cloud3" />                 
+            <remap from="/target_cloud" to="/target_cloud3" />      
+            <remap from="/verify_cloud" to="/verify_cloud3" />                 
+            <remap from="/refine_verify_cloud" to="/refine_verify_cloud3" />      
+
+            <!-- //用于匹配地图的长度和宽度 -->
+            <!-- // 粗匹配和精匹配时点重合的距离阈值 -->
+            <param name="point_threshold_rough_x" value="0.5" /> 
+            <param name="point_threshold_rough_y" value="0.5" /> 
+            <param name="point_threshold_refine_x" value="0.05" /> 
+            <param name="point_threshold_refine_y" value="0.05" /> 
+            <!-- // 粗匹配迭代步长与精匹配迭代范围 -->
+            <param name="range_refine_x_min" value="-10" /> 
+            <param name="range_refine_y_min" value="-10" /> 
+            <param name="range_refine_x_max" value="10" /> 
+            <param name="range_refine_y_max" value="10" /> 
+
+            <param name="iteration_interval" value="5" /> 
+            <param name="range_rough_x_min" value="-50" /> 
+            <param name="range_rough_y_min" value="-50" /> 
+            <param name="range_rough_x_max" value="50" /> 
+            <param name="range_rough_y_max" value="50" /> 
+        </node>
+    </group>
+
+    <!-- 是否需要再开启一个地图匹配节点 -->
+    <group if="$(arg map_matching4)">
+        <node pkg="map2d3d" type="map_match_quadtree_kitti4" name="map_match_quadtree_kitti4" output="screen">
+
+            <param name="globalmappath" value="$(find map2d3d)/map_for_map_matching/map0_data.dat" /> 
+            <param name="globalmap_header_path" value="$(find map2d3d)/map_for_map_matching/map0.dat" /> 
+            <param name="localmappath"                    value="$(find map2d3d)/map_for_map_matching/map33_data.dat" /> 
+            <param name="localmap_header_path" value="$(find map2d3d)/map_for_map_matching/map33.dat" />         
+            <param name="resolution" value="0.1" /> 
+
+            <!-- 修改话题名称 ，用于区分-->
+            <remap from="/for_icp_cloud" to="/for_icp_cloud4" />                           
+            <remap from="/after_icp_cloud" to="/after_icp_cloud4" />                  
+            <remap from="/source_all_cloud" to="/source_all_cloud4" />                           
+            <remap from="/source_cloud" to="/source_cloud4" />                 
+            <remap from="/target_cloud" to="/target_cloud4" />      
+            <remap from="/verify_cloud" to="/verify_cloud4" />                 
+            <remap from="/refine_verify_cloud" to="/refine_verify_cloud4" />      
+
+            <!-- //用于匹配地图的长度和宽度 -->
+            <!-- // 粗匹配和精匹配时点重合的距离阈值 -->
+            <param name="point_threshold_rough_x" value="0.5" /> 
+            <param name="point_threshold_rough_y" value="0.5" /> 
+            <param name="point_threshold_refine_x" value="0.05" /> 
+            <param name="point_threshold_refine_y" value="0.05" /> 
+            <!-- // 粗匹配迭代步长与精匹配迭代范围 -->
+            <param name="range_refine_x_min" value="-10" /> 
+            <param name="range_refine_y_min" value="-10" /> 
+            <param name="range_refine_x_max" value="10" /> 
+            <param name="range_refine_y_max" value="10" /> 
+
+            <param name="iteration_interval" value="5" /> 
+            <param name="range_rough_x_min" value="-50" /> 
+            <param name="range_rough_y_min" value="-50" /> 
+            <param name="range_rough_x_max" value="50" /> 
+            <param name="range_rough_y_max" value="50" /> 
+        </node>
+    </group>
+
+    <!-- 是否需要再开启一个地图匹配节点 -->
+    <group if="$(arg map_matching5)">
+        <node pkg="map2d3d" type="map_match_quadtree_kitti5" name="map_match_quadtree_kitti5" output="screen">
+
+            <param name="globalmappath" value="$(find map2d3d)/map_for_map_matching/map0_data.dat" /> 
+            <param name="globalmap_header_path" value="$(find map2d3d)/map_for_map_matching/map0.dat" /> 
+            <param name="localmappath"                    value="$(find map2d3d)/map_for_map_matching/map41_data.dat" /> 
+            <param name="localmap_header_path" value="$(find map2d3d)/map_for_map_matching/map41.dat" />         
+            <param name="resolution" value="0.1" /> 
+
+            <!-- 修改话题名称 ，用于区分-->
+            <remap from="/for_icp_cloud" to="/for_icp_cloud5" />                           
+            <remap from="/after_icp_cloud" to="/after_icp_cloud5" />                  
+            <remap from="/source_all_cloud" to="/source_all_cloud5" />                           
+            <remap from="/source_cloud" to="/source_cloud5" />                 
+            <remap from="/target_cloud" to="/target_cloud5" />      
+            <remap from="/verify_cloud" to="/verify_cloud5" />                 
+            <remap from="/refine_verify_cloud" to="/refine_verify_cloud5" />      
+
+            <!-- //用于匹配地图的长度和宽度 -->
+            <!-- // 粗匹配和精匹配时点重合的距离阈值 -->
+            <param name="point_threshold_rough_x" value="0.5" /> 
+            <param name="point_threshold_rough_y" value="0.5" /> 
+            <param name="point_threshold_refine_x" value="0.05" /> 
+            <param name="point_threshold_refine_y" value="0.05" /> 
+            <!-- // 粗匹配迭代步长与精匹配迭代范围 -->
+            <param name="range_refine_x_min" value="-10" /> 
+            <param name="range_refine_y_min" value="-10" /> 
+            <param name="range_refine_x_max" value="10" /> 
+            <param name="range_refine_y_max" value="10" /> 
+
+            <param name="iteration_interval" value="5" /> 
+            <param name="range_rough_x_min" value="-50" /> 
+            <param name="range_rough_y_min" value="-50" /> 
+            <param name="range_rough_x_max" value="50" /> 
+            <param name="range_rough_y_max" value="50" /> 
+        </node>
+    </group>
+
+</launch>
+
+
+
+
