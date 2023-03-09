@@ -76,6 +76,7 @@ roslaunch ./launch/non-uniform_quadtree_map_with_dead-end_semantics.launch
 
 ### 3.2 接收地图话题运行规划程序
 **规划相关代码涉及到其他工作，暂时不发布细节**
+
 接收地图话题，启动基于A-star算法的全局规划和基于dwa的局部路径规划，并设置起点和终点。效果如下：
 <div align=center><img src="./Demo/path_planning_1.png" /></div>
 左侧放大效果如下
