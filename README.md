@@ -71,7 +71,7 @@ roslaunch ./launch/non-uniform_quadtree_map_with_dead-end_semantics.launch
 <div align=center><img src="./Demo/map_building_2.png" /></div>
 
 ### 3.2 Receive map topics and run planning programs
-**Planning related code involves other work, so no details will be released for now**
+**Planning related code involves other work, so no details will be released for now.**
 After receiving the map topic and setting the start and end points, global planning based on A-star algorithm and local path planning based on DWA are initiated. The planning result is as follows.
 <div align=center><img src="./Demo/path_planning_1.png" /></div>
 The zoomed-in effect on the left side is shown below.
