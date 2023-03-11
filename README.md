@@ -19,7 +19,7 @@
   </h3>
   <div align="center"></div>
 </p>
-Our work has been accepted and has not yet been published. [paper](https://www.sciencedirect.com/science/article/pii/S2773153723000075)
+Our work has been accepted by Green Energy and Intelligent Transportation. [paper link](https://www.sciencedirect.com/science/article/pii/S2773153723000075)
 
 ## 0. Dependency & Install
 ### Dependency
